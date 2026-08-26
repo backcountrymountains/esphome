@@ -83,6 +83,7 @@
 #define USE_IMAGE
 #define USE_IMPROV_SERIAL
 #define USE_IMPROV_SERIAL_NEXT_URL
+#define USE_IMPROV_SERIAL_UART
 #define USE_INFRARED
 #define USE_IR_RF
 #define USE_JSON

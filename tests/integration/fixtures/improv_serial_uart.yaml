@@ -1,0 +1,45 @@
+esphome:
+  name: improv-serial-uart-test
+
+host:
+api:
+  actions:
+    - action: uart_inject
+      variables:
+        payload: int[]
+      then:
+        - uart_mock.inject_rx:
+            id: mock_uart
+            data: !lambda |-
+              std::vector<uint8_t> bytes;
+              bytes.reserve(payload.size());
+              for (int v : payload) {
+                bytes.push_back(static_cast<uint8_t>(v));
+              }
+              return bytes;
+
+logger:
+  level: DEBUG
+
+external_components:
+  - source:
+      type: local
+      path: EXTERNAL_COMPONENT_PATH
+
+# Host-only stub shadowing the real wifi component (see external_components/wifi)
+wifi:
+  ssid: TestNet
+  password: password1
+
+# Dummy uart entry so the uart component sources are part of the build; the
+# actual bus used by improv_serial is the uart_mock component below
+uart:
+  baud_rate: 115200
+  port: /dev/null
+
+uart_mock:
+  id: mock_uart
+  baud_rate: 115200
+
+improv_serial:
+  uart_id: mock_uart
