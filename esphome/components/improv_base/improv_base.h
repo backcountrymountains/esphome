@@ -7,6 +7,9 @@
 #include <improv.h>
 #endif
 
+// TEMPORARY: remove with improv_sdk_shim.h once Improv 1.3.0 is released
+#include "improv_sdk_shim.h"
+
 namespace esphome::improv_base {
 
 class ImprovBase {

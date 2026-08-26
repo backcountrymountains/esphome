@@ -666,6 +666,8 @@ def lint_relative_py_import(fname: Path, line, col, content):
         "esphome/components/host/helpers.cpp",
         "esphome/components/zephyr/helpers.cpp",
         "esphome/components/http_request/httplib.h",
+        # TEMPORARY: inlined Improv SDK class, remove with the shim once Improv 1.3.0 is released
+        "esphome/components/improv_base/improv_sdk_shim.h",
     ],
 )
 def lint_namespace(fname: Path, content: str) -> str | None:
